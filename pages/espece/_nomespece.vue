@@ -20,19 +20,15 @@
     </v-navigation-drawer>
 
     <v-row justify="center" align="center">
-
-      <v-col cols="auto" sm="8" md="6" v-if="esp_infos != null">
-        <v-card>
-          <v-card-title class="headline">
-           <div>{{ esp_infos.infos.genre }} {{ esp_infos.infos.espece }}</div>
+      <v-col cols="auto" sm="8" md="6">
+        <v-card v-if="info_esp != null">
+          <v-card-title class="headline"> 
+            {{ info_esp.genre }} {{ info_esp.espece }}
           </v-card-title>
           <v-card-text>
-              <div>{{ nom_espece}}</div>
+            <div>{{ nom_espece }}</div>
           </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-          </v-card-actions>
+          <v-card-actions> </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -42,22 +38,27 @@
 <script>
 export default {
   name: "indexPageEspece",
-  middleware: ["liste_especes"],
+  middleware: ["liste_especes", "espece"],
   data() {
-    
     return {
-      nom_espece : this.$route.params.nomespece,  
+      nom_espece: this.$route.params.nomespece,
       esps: [],
-      esp_infos: null
+      stats: null,
+      infos_esp: null,
+      nb_dep: 0,
+      recolts: null,
     };
-  },
-  async fetch() {
-    this.esp_infos = await this.$axios.$get('http://antarea.fr/iden/pageiden/'+this.nom_espece)
   },
   computed: {
     infos: function () {
       this.esps = this.$store.state.liste_especes.list;
       return this.esps;
+    },
+    info_esp: function () {
+      console.log("computed info esp");
+      console.log(this.$store.state.espece.infos.infos);
+      this.infos_esp = this.$store.state.espece.infos.infos;
+      return this.infos_esp;
     },
     drawer() {
       return this.$store.state.commun.drawer;
