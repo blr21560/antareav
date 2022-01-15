@@ -23,10 +23,13 @@
       <v-col cols="auto" sm="8" md="6">
         <v-card v-if="info_esp != null">
           <v-card-title class="headline"> 
-            {{ info_esp.genre }} {{ info_esp.espece }}
+            {{ info_esp.genre }} {{ info_esp.espece }} {{ info_esp.commentaire }}
           </v-card-title>
+          <v-card-actions> </v-card-actions>
+        </v-card>
+        <v-card v-if="info_esp != null" class="mt-4">
           <v-card-text>
-            <div>Nombre de département : {{nombre_dep}}</div>
+            <div>Cette espèce a été identifiée {{ statistiques.nbiden}} fois dans {{nombre_dep}} départements entre {{ statistiques.pre }} et {{ statistiques.der }}.</div>
           </v-card-text>
           <v-card-actions> </v-card-actions>
         </v-card>
@@ -47,6 +50,7 @@ export default {
       infos_esp: null,
       nb_dep: 0,
       recolts: null,
+      stat:null
     };
   },
   computed: {
@@ -63,6 +67,10 @@ export default {
     nombre_dep: function () {
       this.nb_dep = this.$store.state.espece.infos.nb_dep;
       return this.nb_dep;
+    },
+    statistiques: function () {
+      this.stat = this.$store.state.espece.infos.stats;
+      return this.stat;
     },
     drawer() {
       return this.$store.state.commun.drawer;
