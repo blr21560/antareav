@@ -47,7 +47,7 @@ export default {
     axios: {},
     privateRuntimeConfig: {
         axios: {
-            baseURL: 'http://antarea.fr/iden/',
+            baseURL: 'http://antarea.fr/iden/pageiden/',
             proxyHeaders: false,
             credentials: false
         }
