@@ -26,7 +26,7 @@
             {{ info_esp.genre }} {{ info_esp.espece }}
           </v-card-title>
           <v-card-text>
-            <div>{{ nom_espece }}</div>
+            <div>Nombre de département : {{nombre_dep}}</div>
           </v-card-text>
           <v-card-actions> </v-card-actions>
         </v-card>
@@ -59,6 +59,10 @@ export default {
       console.log(this.$store.state.espece.infos.infos);
       this.infos_esp = this.$store.state.espece.infos.infos;
       return this.infos_esp;
+    },
+    nombre_dep: function () {
+      this.nb_dep = this.$store.state.espece.infos.nb_dep;
+      return this.nb_dep;
     },
     drawer() {
       return this.$store.state.commun.drawer;
