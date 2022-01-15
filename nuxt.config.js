@@ -44,10 +44,13 @@ export default {
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {
-        baseURL: 'http://antarea.fr/iden/',
-        proxyHeaders: false,
-        credentials: false
+    axios: {},
+    privateRuntimeConfig: {
+        axios: {
+            baseURL: 'http://antarea.fr/iden/',
+            proxyHeaders: false,
+            credentials: false
+        }
     },
     proxy: {
         '/api/': { target: 'http://antarea.fr/iden/', pathRewrite: { '^/api/': '' }, changeOrigin: true },
