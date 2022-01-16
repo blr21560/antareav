@@ -28,27 +28,41 @@
           </v-card-title>
           <v-card-actions> </v-card-actions>
         </v-card>
-        <v-card v-if="info_esp != null" class="mt-4">
-          <v-card-text>
-            <div>
-              Cette espèce a été identifiée {{ statistiques.nbiden }} fois dans
-              {{ nombre_dep }} départements entre {{ statistiques.pre }} et
-              {{ statistiques.der }}.
-            </div>
-          </v-card-text>
-          <v-card-actions> </v-card-actions>
-        </v-card>
-        <v-card v-if="info_esp != null" class="mt-4">
-          <v-card-text>
-            <v-data-table dense
-              :headers="headers"
-              :items="identifications"
-              :items-per-page="5"
-              class="elevation-1"
-            ></v-data-table>
-          </v-card-text>
-          <v-card-actions> </v-card-actions>
-        </v-card>
+        <v-expansion-panels>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >Informations générales</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-card v-if="info_esp != null" class="mt-4">
+                <v-card-text>
+                  <div>
+                    Cette espèce a été identifiée {{ statistiques.nbiden }} fois
+                    dans {{ nombre_dep }} départements entre
+                    {{ statistiques.pre }} et {{ statistiques.der }}.
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header>Identifications</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-card v-if="info_esp != null" class="mt-4">
+                <v-card-text>
+                  <v-data-table
+                    dense
+                    :headers="headers"
+                    :items="identifications"
+                    :items-per-page="5"
+                    class="elevation-4"
+                  ></v-data-table>
+                </v-card-text>
+                <v-card-actions> </v-card-actions>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
   </div>
