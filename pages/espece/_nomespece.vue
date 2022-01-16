@@ -28,7 +28,7 @@
           </v-card-title>
           <v-card-actions> </v-card-actions>
         </v-card>
-        <v-expansion-panels>
+        <v-expansion-panels v-model="panel" multiple>
           <v-expansion-panel>
             <v-expansion-panel-header
               >Informations générales</v-expansion-panel-header
@@ -74,6 +74,7 @@ export default {
   middleware: ["liste_especes", "espece"],
   data() {
     return {
+      panel: [0,1],
       nom_espece: this.$route.params.nomespece,
       esps: [],
       stats: null,
