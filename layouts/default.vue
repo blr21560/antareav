@@ -8,8 +8,8 @@
     >
       <v-app-bar-nav-icon @click.stop="clickDrawer" />
       <v-toolbar-title v-text="title" />
-      <v-btn>Espèce</v-btn>
-      <v-btn>Département</v-btn>
+      <v-btn to="/espece">Espèce</v-btn>
+      <v-btn to="/departement">Département</v-btn>
       <v-btn>Récolteur</v-btn>
       <v-spacer />
     </v-app-bar>

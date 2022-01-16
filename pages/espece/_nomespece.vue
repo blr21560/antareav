@@ -19,7 +19,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-row justify="center" align="center">
+    <v-row justify="center" align="center"  v-if="info_esp != null">
       <v-col cols="auto" sm="8" md="6">
         <v-card v-if="info_esp != null">
           <v-card-title class="headline">
@@ -34,7 +34,7 @@
               >Informations générales</v-expansion-panel-header
             >
             <v-expansion-panel-content>
-              <v-card v-if="info_esp != null" class="mt-4">
+              <v-card v-if="info_esp != null">
                 <v-card-text>
                   <div>
                     Cette espèce a été identifiée {{ statistiques.nbiden }} fois
@@ -48,7 +48,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Identifications</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-card v-if="info_esp != null" class="mt-4">
+              <v-card>
                 <v-card-text>
                   <v-data-table
                     dense
