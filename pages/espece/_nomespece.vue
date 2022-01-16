@@ -22,14 +22,30 @@
     <v-row justify="center" align="center">
       <v-col cols="auto" sm="8" md="6">
         <v-card v-if="info_esp != null">
-          <v-card-title class="headline"> 
-            {{ info_esp.genre }} {{ info_esp.espece }} {{ info_esp.commentaire }}
+          <v-card-title class="headline">
+            {{ info_esp.genre }} {{ info_esp.espece }}
+            {{ info_esp.commentaire }}
           </v-card-title>
           <v-card-actions> </v-card-actions>
         </v-card>
         <v-card v-if="info_esp != null" class="mt-4">
           <v-card-text>
-            <div>Cette espèce a été identifiée {{ statistiques.nbiden}} fois dans {{nombre_dep}} départements entre {{ statistiques.pre }} et {{ statistiques.der }}.</div>
+            <div>
+              Cette espèce a été identifiée {{ statistiques.nbiden }} fois dans
+              {{ nombre_dep }} départements entre {{ statistiques.pre }} et
+              {{ statistiques.der }}.
+            </div>
+          </v-card-text>
+          <v-card-actions> </v-card-actions>
+        </v-card>
+        <v-card v-if="info_esp != null" class="mt-4">
+          <v-card-text>
+            <v-data-table dense
+              :headers="headers"
+              :items="identifications"
+              :items-per-page="5"
+              class="elevation-1"
+            ></v-data-table>
           </v-card-text>
           <v-card-actions> </v-card-actions>
         </v-card>
@@ -49,8 +65,18 @@ export default {
       stats: null,
       infos_esp: null,
       nb_dep: 0,
-      recolts: null,
-      stat:null
+      idens: null,
+      stat: null,
+      headers: [
+        {
+          text: "date de récolte",
+          align: "start",
+          sortable: false,
+          value: "date_recolt",
+        },
+        { text: "Lieu", value: "lieu" },
+        { text: "Récolteur", value: "recolteur" },
+      ],
     };
   },
   computed: {
@@ -59,10 +85,12 @@ export default {
       return this.esps;
     },
     info_esp: function () {
-      console.log("computed info esp");
-      console.log(this.$store.state.espece.infos.infos);
       this.infos_esp = this.$store.state.espece.infos.infos;
       return this.infos_esp;
+    },
+    identifications: function () {
+      this.idens = this.$store.state.espece.infos.data;
+      return this.idens;
     },
     nombre_dep: function () {
       this.nb_dep = this.$store.state.espece.infos.nb_dep;
