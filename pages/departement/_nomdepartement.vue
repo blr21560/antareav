@@ -39,6 +39,24 @@
               </v-card>
             </v-expansion-panel-content>
           </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >Détails des identifications</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-card>
+                <v-card-text>
+                  <v-data-table
+                    dense
+                    :headers="headers1"
+                    :items="identifications"
+                    :items-per-page="5"
+                    class="elevation-4"
+                  ></v-data-table>
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
     </v-row>
@@ -62,6 +80,16 @@ export default {
           value: "espece",
         },
         { text: "Nombre d'identifications", value: "nb" },
+      ],
+      headers1: [
+        {
+          text: "Espèce",
+          align: "start",
+          value: "espece",
+        },
+        { text: "Commune", value: "commune" },
+        { text: "Récolteur", value: "recolt" },
+        { text: "Date", value: "daterecolt" },
       ],
     };
   },
